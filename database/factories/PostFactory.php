@@ -22,7 +22,23 @@ class PostFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'title' => $this->faker->sentence,
+            'text' => $this->faker->paragraphs(4),
+            'approved_at' => now(),
         ];
+    }
+
+    /**
+     * Indicate that the post should not be approved.
+     *
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
+    public function unapproved()
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'approved_at' => null,
+            ];
+        });
     }
 }
