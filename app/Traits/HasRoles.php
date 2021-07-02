@@ -3,6 +3,8 @@
 namespace App\Traits;
 
 use App\Models\Role;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 trait HasRoles
 {
@@ -52,7 +54,7 @@ trait HasRoles
     /**
      * A user can have many roles.
      */
-    public function roles(): Role
+    public function roles(): BelongsToMany
     {
         return $this->belongsToMany(Role::class)->withTimestamps();
     }

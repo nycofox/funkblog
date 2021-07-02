@@ -14,9 +14,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [\App\Http\Controllers\PostController::class, 'index'])->name('home');
+//Route::get('/', function () {
+//    return view('welcome');
+//})->name('home');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
+//    return view('dashboard');
+    return redirect(route('home'));
 })->name('dashboard');
 
 Route::middleware(['auth'])->group(function() {
@@ -24,4 +28,9 @@ Route::middleware(['auth'])->group(function() {
     Route::get('create', [\App\Http\Controllers\PostController::class, 'create'])->name('post.create');
     Route::post('create', [\App\Http\Controllers\PostController::class, 'store'])->name('post.store');
 
+});
+
+Route::middleware(['role:admin'])->group(function () {
+    Route::get('admin', [\App\Http\Controllers\ApproveController::class , 'index'])->name('admin.index');
+    Route::get('admin/p/{post}', [\App\Http\Controllers\ApproveController::class , 'show'])->name('admin.post');
 });

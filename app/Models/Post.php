@@ -47,7 +47,7 @@ class Post extends Model
      */
     public function author(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'id', 'user_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     /**
@@ -55,7 +55,7 @@ class Post extends Model
      */
     public function getRatingAttribute(): ?float
     {
-
+        return null;
     }
 
     public function setRating(User $user)

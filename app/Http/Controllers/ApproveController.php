@@ -14,6 +14,13 @@ class ApproveController extends Controller
         ]);
     }
 
+    public function show(Post $post)
+    {
+        return view('admin.show', [
+            'post' => $post,
+        ]);
+    }
+
     /**
      * Approves a post
      *
