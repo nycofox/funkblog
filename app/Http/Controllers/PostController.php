@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\PostCreated;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -14,8 +15,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('index', [
-            'posts' => Post::whereNotNull('activated_at')->latest()->paginate(10),
+        return view('posts.index', [
+            'posts' => Post::whereNotNull('approved_at')->latest()->paginate(10),
         ]);
     }
 
@@ -26,24 +27,39 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('post.create');
+        return view('posts.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required|min:5',
+            'text' => 'required|min:20',
+        ]);
+
+        $post = Post::create([
+            'user_id' => auth()->id(),
+            'title' => $request->title,
+            'text' => $request->text,
+            'approved_at' => null,
+        ]);
+
+        event(new PostCreated($post));
+
+        return view('posts.approval');
+
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Post  $post
+     * @param \App\Models\Post $post
      * @return \Illuminate\Http\Response
      */
     public function show(Post $post)
@@ -56,7 +72,7 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Post  $post
+     * @param \App\Models\Post $post
      * @return \Illuminate\Http\Response
      */
     public function edit(Post $post)
@@ -67,8 +83,8 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Post  $post
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Models\Post $post
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Post $post)
@@ -79,7 +95,7 @@ class PostController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Post  $post
+     * @param \App\Models\Post $post
      * @return \Illuminate\Http\Response
      */
     public function destroy(Post $post)

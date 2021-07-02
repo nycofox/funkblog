@@ -13,6 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', [\App\Http\Controllers\PostController::class, 'index'])->name('home');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
+
+Route::middleware(['auth'])->group(function() {
+
+    Route::get('create', [\App\Http\Controllers\PostController::class, 'create'])->name('post.create');
+    Route::post('create', [\App\Http\Controllers\PostController::class, 'store'])->name('post.store');
+
 });
