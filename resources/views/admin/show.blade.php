@@ -11,10 +11,16 @@
                 <h3 class="font-semibold text-xl">{{ $post->title }}</h3>
                 <h5>Posted by {{ $post->author->name }} {{ $post->created_at->diffForHumans() }}</h5>
                 <div class="mb-6 text-gray-600 mt-4 text-lg">
-                    {!! Str::markdown($post->text) !!}
+                    {!! Str::markdown($post->text, ['html_input' => 'strip']) !!}
                 </div>
-                <button class="px-4 py-2 bg-indigo-600 text-white font-semibold mr-2 rounded">Approve</button>
-                <button class="px-4 py-2 bg-red-600 text-white font-semibold rounded">Delete</button>
+                <div class="flex">
+                    <form>
+                        <button class="px-4 py-2 bg-indigo-600 text-white font-semibold mr-2 rounded">Approve</button>
+                    </form>
+                    <form>
+                        <button class="px-4 py-2 bg-red-600 text-white font-semibold rounded">Delete</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

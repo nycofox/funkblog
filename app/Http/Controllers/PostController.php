@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Events\PostCreated;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -64,9 +65,11 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        return view('post.show', [
+        return view('posts.show', [
             'post' => $post
         ]);
+
+        Str::markdown();
     }
 
     /**
