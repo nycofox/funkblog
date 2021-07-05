@@ -27,7 +27,7 @@ trait HasRating
         if (auth()->check()) {
             return $this->ratings()->updateOrCreate([
                 'user_id' => auth()->id(),
-                'post_id' => $this->id,
+//                'post_id' => $this->id,
             ], [
                 'rating' => $score,
             ]);

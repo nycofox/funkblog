@@ -5,11 +5,11 @@
     </div>
     @auth
         <div class="flex items-center mt-0">
-            <span class="text-sm">Your rating ({{ $userrating }}):</span>
+            <span class="text-sm">Your rating ({{ $rating }}):</span>
             <div class="flex items-center ml-2">
 
-                @for($i = 0; $i < $userrating; $i++)
-                    <form method="post" wire:submit.prevent="rate($i)">
+                @for($i = 0; $i < $rating; $i++)
+                    <form method="post" wire:submit.prevent="rate({{ $i + 1 }})">
                         @csrf
                         <button>
                             <svg class="mx-1 w-4 h-4 fill-current text-green-400" xmlns="http://www.w3.org/2000/svg"
@@ -21,8 +21,8 @@
                     </form>
                 @endfor
 
-                @for($i = $userrating; $i < 5; $i++)
-                    <form method="post" wire:submit.prevent="rate($i)">
+                @for($i = $rating; $i < 5; $i++)
+                    <form method="post" wire:submit.prevent="rate({{ $i + 1 }})">
                         @csrf
                         <button>
                             <svg class="mx-1 w-4 h-4 fill-current text-gray-500" xmlns="http://www.w3.org/2000/svg"
