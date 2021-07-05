@@ -2,13 +2,17 @@
 
 namespace App\Models;
 
+use App\Traits\HasRating;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
 {
     use HasFactory;
+    use HasRating;
+    use SoftDeletes;
 
     /**
      * Disable mass assignment protection.
@@ -23,6 +27,8 @@ class Post extends Model
      * @var string[]
      */
     protected $with = ['author'];
+
+    protected $withCount = ['ratings'];
 
     /**
      * Always include the rating attribute in the model.
@@ -50,16 +56,4 @@ class Post extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    /**
-     *
-     */
-    public function getRatingAttribute(): ?float
-    {
-        return null;
-    }
-
-    public function setRating(User $user)
-    {
-
-    }
 }

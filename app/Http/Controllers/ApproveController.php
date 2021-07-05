@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\PostApproved;
+use App\Events\PostDenied;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -31,6 +33,8 @@ class ApproveController extends Controller
     {
         $post->update(['approved_at' => now()]);
 
+        event(new PostApproved($post));
+
         return redirect(route('post.show', $post));
     }
 
@@ -44,6 +48,8 @@ class ApproveController extends Controller
     {
         $post->delete();
 
-        return redirect('admin.index');
+        event(new PostDenied($post));
+
+        return redirect(route('admin.index'));
     }
 }

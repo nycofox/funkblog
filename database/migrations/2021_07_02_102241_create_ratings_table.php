@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePostRatingsTable extends Migration
+class CreateRatingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreatePostRatingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('post_ratings', function (Blueprint $table) {
-            $table->primary(['user_id', 'post_id']);
+        Schema::create('ratings', function (Blueprint $table) {
+//            $table->primary(['user_id', 'post_id']);
+            $table->id();
             $table->foreignId('user_id');
             $table->foreignId('post_id');
-            $table->float('rating');
+            $table->unsignedSmallInteger('rating');
             $table->timestamps();
         });
     }

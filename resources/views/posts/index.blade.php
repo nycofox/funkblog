@@ -12,11 +12,12 @@
                 @include('posts._post')
             @empty
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                    <p class="p-6">Looks like there are no posts yet, why don't you <a href="#" class="font-semibold">write</a>
-                        one?
+                    <p class="p-6">Looks like there are no posts yet, why don't you
+                        <a href="{{ route('post.create') }}" class="font-semibold">write</a> one?
                     </p>
                 </div>
             @endforelse
+            {{ $posts->links() }}
         </div>
     </div>
 </x-app-layout>

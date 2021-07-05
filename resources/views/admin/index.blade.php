@@ -11,11 +11,11 @@
                 @forelse($posts as $post)
                     <div>
                         <a href="{{ route('admin.post', $post) }}" class="font-semibold text-lg">{{ $post->title }}</a>
-                        by {{ $post->author->name }}
+                        {{ $post->author->name }}
                         posted {{ $post->created_at->diffForHumans() }}
                     </div>
                 @empty
-                    <p class="p-6">No posts are currently awaiting approval, have a nice cup of coffe!</p>
+                    <p>No posts are currently awaiting approval, have a nice cup of coffee!</p>
                 @endforelse
             </div>
         </div>

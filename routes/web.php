@@ -34,4 +34,6 @@ Route::middleware(['auth'])->group(function() {
 Route::middleware(['role:admin'])->group(function () {
     Route::get('admin', [\App\Http\Controllers\ApproveController::class , 'index'])->name('admin.index');
     Route::get('admin/p/{post}', [\App\Http\Controllers\ApproveController::class , 'show'])->name('admin.post');
+    Route::post('admin/p/{post}', [\App\Http\Controllers\ApproveController::class , 'approve'])->name('admin.post.approve');
+    Route::delete('admin/p/{post}', [\App\Http\Controllers\ApproveController::class , 'decline'])->name('admin.post.delete');
 });

@@ -1,4 +1,4 @@
-<div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6">
+<div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-6 mb-4">
     <h4>
         <a href="{{ route('post.show', $post) }}" class="font-semibold text-lg">{{ $post->title }}</a>
     </h4>
@@ -10,6 +10,6 @@
         {!! Str::markdown($post->text) !!}
     </div>
     <div>
-        Rating: {{ $post->rating }}
+        <livewire:rating :post="$post" />
     </div>
 </div>

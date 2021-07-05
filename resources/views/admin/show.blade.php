@@ -14,10 +14,15 @@
                     {!! Str::markdown($post->text, ['html_input' => 'strip']) !!}
                 </div>
                 <div class="flex">
-                    <form>
-                        <button class="px-4 py-2 bg-indigo-600 text-white font-semibold mr-2 rounded">Approve</button>
+                    <form method="post" action="{{ route('admin.post.approve', $post) }}">
+                        @csrf
+                        <button type="submit" class="px-4 py-2 bg-indigo-600 text-white font-semibold mr-2 rounded">
+                            Approve
+                        </button>
                     </form>
-                    <form>
+                    <form method="post" action="{{ route('admin.post.delete', $post) }}">
+                        @method('DELETE')
+                        @csrf
                         <button class="px-4 py-2 bg-red-600 text-white font-semibold rounded">Delete</button>
                     </form>
                 </div>

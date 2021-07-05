@@ -53,6 +53,9 @@ class PostController extends Controller
 
         event(new PostCreated($post));
 
+        // This is the same as above, just a different approach based on preference and readability
+        // PostCreated::dispatch($post);
+
         return view('posts.approval');
 
     }

@@ -20,6 +20,9 @@
                         Admin
                     </x-jet-nav-link>
                     @endadmin
+                    <x-jet-nav-link href="{{ route('post.create') }}" :active="request()->routeIs('post.create')">
+                        Create a post
+                    </x-jet-nav-link>
                 </div>
             </div>
 
