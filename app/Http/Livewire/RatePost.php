@@ -2,8 +2,6 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Post;
-use App\Models\Rating;
 use Livewire\Component;
 
 class RatePost extends Component
@@ -17,7 +15,6 @@ class RatePost extends Component
     public function mount($post)
     {
         $this->post = $post;
-//        $this->userrating = Rating::where(['user_id' => auth()->id(), 'post_id' => $this->post->id])->first()->rating;
         $userrating = $this->post->ratings()->where(['user_id' => auth()->id()])->first();
 
         if(!$userrating) {

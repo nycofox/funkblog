@@ -29,7 +29,7 @@
     
   * `$user = User::factory()->create(['name' => 'User Name', 'email' => 'user@host.com'])`
     
-  * `$user->assignRole('admin)`
+  * `$user->assignRole('admin')`
     
   * `exit`
     
@@ -41,7 +41,7 @@
     
   * `$user = User::whereEmail('user@host.com')->first()`
 
-  * `$user->assignRole('admin)`
+  * `$user->assignRole('admin')`
 
   * `exit`
 
