@@ -1,5 +1,7 @@
 # Funkblog
 
+Requires PHP 7.4, 
+
 ### Installation instructions
 
 * Clone repository (if using GitHub CLI): `gh repo clone nycofox/funkblog`, or similar command for other CLI/GUI.
@@ -46,3 +48,29 @@
   * `exit`
 
 (Replace "User name" and "user@host.com" with appropriate values.)
+
+### Future considerations
+
+* Optimize SQL, especially n+1 issues for ratings. Redis can also be used for this.
+
+* Enable caching for high-volume delivery.
+
+* Enable queue worker to offload tasks like sending emails.
+
+* Admins should be able to post without approval steps.
+
+* Allow for richer media posts (images/videos).
+
+* Flash messages when operations are successful or needs attention.
+
+* Implement feature and unit tests.
+
+* Voting can be enabled for guests, using cookies to prevent double voting.
+
+* Redis can be used for ratings instead of SQL.
+
+* Navbar can be improved for guests.
+
+* Users should be able to filter and sort posts based on ratings, author, popularity or age of post.
+
+* More comments and documentation
