@@ -1,6 +1,6 @@
 # Funkblog
 
-Requires PHP 7.4, 
+Requires PHP 7.4 or newer. 
 
 ### Installation instructions
 
@@ -58,6 +58,8 @@ Requires PHP 7.4,
 * Enable queue worker to offload tasks like sending emails.
 
 * Admins should be able to post without approval steps.
+
+* Posts on the front page should show an excerpt if they are longer than 2 paragraphs.
 
 * Allow for richer media posts (images/videos).
 
